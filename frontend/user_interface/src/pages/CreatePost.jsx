@@ -1,6 +1,7 @@
 import React  from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import API_BASE_URL from '../config'
 
 const CreatePost = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const CreatePost = () => {
 
         const formdata = new FormData(e.target);
 
-        axios.post("http://localhost:3000/create-posts", formdata)
+        axios.post(`${API_BASE_URL}/create-posts`, formdata)
         .then((response) => {
             console.log(response.data);
             setUploading(false);

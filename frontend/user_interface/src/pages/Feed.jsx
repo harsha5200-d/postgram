@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config';
 
 const Feed = () => {
     const [posts, setPosts] = useState([]);
@@ -7,7 +8,7 @@ const Feed = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:3000/posts")
+        axios.get(`${API_BASE_URL}/posts`)
         .then(response => {
             setPosts(response.data.posts);
             setLoading(false);
