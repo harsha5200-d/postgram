@@ -90,8 +90,20 @@ body {
 }
 
 /* Sections */
-.create-post-section, .feed-section {
+.create-post-section, .feed-section, .auth-section {
   animation: fadeIn 0.6s ease-out;
+}
+
+.auth-footer {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.auth-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
 }
 
 @keyframes fadeIn {
