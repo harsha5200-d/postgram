@@ -22,6 +22,7 @@
 <br>
 
 <img src="https://img.shields.io/badge/STATUS-LIVE-success?style=for-the-badge&logo=vercel">
+
 <img src="https://img.shields.io/badge/DEPLOYED%20ON-VERCEL-black?style=for-the-badge&logo=vercel">
 
 <br><br>
