@@ -2,11 +2,19 @@ require("dotenv").config();
 const app = require('./src/app');
 const connectDB = require('./src/db/db');
 
-connectDB();
+async function startServer() {
+  try {
+    await connectDB();
+    
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("CRITICAL ERROR: Failed to start server:", error);
+    process.exit(1);
+  }
+}
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+startServer();
 
