@@ -6,12 +6,20 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const [user, setUser] = React.useState(JSON.parse(localStorage.getItem('user')));
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    setUser(null);
     window.location.href = '/login';
+  };
+
+  const ProtectedRoute = ({ children }) => {
+    if (!user) {
+      return <Navigate to="/login" replace />;
+    }
+    return children;
   };
 
   return (
@@ -23,7 +31,7 @@ const App = () => {
           {user ? (
             <>
               <Link to="/CreatePost" className="nav-link">Share</Link>
-              <button onClick={handleLogout} className="nav-link btn-link" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>Logout</button>
+              <button onClick={handleLogout} className="nav-link btn-link" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'white' }}>Logout</button>
             </>
           ) : (
             <Link to="/login" className="nav-link">Login</Link>
@@ -36,7 +44,11 @@ const App = () => {
           <Route path="/" element={<Navigate to="/feed" />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/CreatePost' element={<CreatePost />} />
+          <Route path='/CreatePost' element={
+            <ProtectedRoute>
+              <CreatePost />
+            </ProtectedRoute>
+          } />
           <Route path='/feed' element={<Feed />} />
         </Routes>
       </main>
