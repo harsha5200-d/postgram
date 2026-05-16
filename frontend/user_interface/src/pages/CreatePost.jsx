@@ -12,8 +12,13 @@ const CreatePost = () => {
         setUploading(true);
 
         const formdata = new FormData(e.target);
+        const token = localStorage.getItem('token');
 
-        axios.post(`${API_BASE_URL}/create-posts`, formdata)
+        axios.post(`${API_BASE_URL}/create-posts`, formdata, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
         .then((response) => {
             console.log(response.data);
             setUploading(false);
