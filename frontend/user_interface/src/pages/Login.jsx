@@ -15,7 +15,7 @@ const Login = () => {
             const response = await axios.post(`${API_BASE_URL}/login`, formData);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            navigate('/feed');
+            window.location.href = '/feed';
         } catch (error) {
             alert("Login failed: " + (error.response?.data?.message || error.message));
         } finally {
